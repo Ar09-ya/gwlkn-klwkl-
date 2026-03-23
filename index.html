@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro System — Your Path to Financial Freedom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b0d;--bg2:#111114;--bg3:#18181c;--bg4:#202026;--bg5:#2a2a32;
+  --line:rgba(255,255,255,0.06);--line2:rgba(255,255,255,0.11);--line3:rgba(255,255,255,0.18);
+  --gold:#c9a96e;--gold2:#e8cc96;--gold3:#f5e0b5;
+  --gold-dim:rgba(201,169,110,0.1);--gold-glow:rgba(201,169,110,0.22);
+  --teal:#4ecdc4;--teal2:#7eddd6;--teal-dim:rgba(78,205,196,0.1);
+  --rose:#e88c8c;--rose-dim:rgba(232,140,140,0.1);
+  --blue:#7eb8f7;--blue-dim:rgba(126,184,247,0.1);
+  --purple:#b39ddb;--purple-dim:rgba(179,157,219,0.1);
+  --green:#81c784;--green-dim:rgba(129,199,132,0.1);
+  --mute:rgba(255,255,255,0.32);--mute2:rgba(255,255,255,0.52);--mute3:rgba(255,255,255,0.72);
+  --white:rgba(255,255,255,0.9);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Syne',sans-serif;--body:'DM Sans',sans-serif;
+  --r:8px;--r2:14px;--r3:20px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--body);font-weight:300;min-height:100vh;display:flex;overflow-x:hidden;font-size:14px}
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:230px;min-height:100vh;background:var(--bg2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:28px 0 24px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{padding:0 22px 24px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.brand-mark{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.brand-icon{width:32px;height:32px;border-radius:8px;background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);display:flex;align-items:center;justify-content:center}
+.brand-icon svg{width:16px;height:16px}
+.brand-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold2);line-height:1}
+.brand-sub{font-size:10px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
+
+.nav-group{padding:0 14px;margin-bottom:6px}
+.nav-group-label{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding:0 8px;margin-bottom:5px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r);cursor:pointer;transition:all .18s;font-size:12.5px;font-weight:400;color:var(--mute2);border:1px solid transparent;user-select:none;position:relative}
+.nav-item:hover{background:var(--bg3);color:var(--white)}
+.nav-item.active{background:var(--gold-dim);color:var(--gold2);border-color:rgba(201,169,110,0.18)}
+.nav-icon{width:18px;height:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:.7}
+.nav-item.active .nav-icon{opacity:1}
+.nav-badge{margin-left:auto;font-size:9px;font-weight:600;padding:1px 6px;border-radius:10px;background:var(--gold-dim);color:var(--gold);letter-spacing:.04em}
+
+.sidebar-footer{margin-top:auto;padding:18px 22px 0;border-top:1px solid var(--line)}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat-mini{background:var(--bg3);border:1px solid var(--line2);border-radius:var(--r);padding:10px 12px}
+.stat-mini-val{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--gold);line-height:1}
+.stat-mini-label{font-size:9px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+/* ─── MAIN ─── */
+.main{flex:1;min-width:0;padding:40px 40px 60px;overflow-y:auto}
+.panel{display:none}
+.panel.active{display:block;animation:fadeUp .25s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── HEADERS ─── */
+.page-header{margin-bottom:28px}
+.page-title{font-family:var(--serif);font-size:38px;font-weight:400;line-height:1.1;color:#fff}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-desc{font-size:13px;color:var(--mute);margin-top:7px;max-width:520px;line-height:1.75}
+
+/* ─── CARDS ─── */
+.card{background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r2);padding:22px;margin-bottom:14px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.card-title{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.card-action{font-size:11px;color:var(--gold);cursor:pointer;font-weight:500;opacity:.8;transition:opacity .15s;background:none;border:none;font-family:var(--body)}
+.card-action:hover{opacity:1}
+
+/* ─── LEGEND ─── */
+.legend-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
+.lpill{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;border:1px solid;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── TIMELINE ─── */
+.schedule-list{display:flex;flex-direction:column}
+.trow{display:grid;grid-template-columns:68px 1fr;gap:0 22px;position:relative}
+.trow+.trow .tcontent{border-top:1px solid var(--line)}
+.tstamp{font-size:10.5px;font-weight:500;color:var(--mute);padding:18px 4px 18px 0;letter-spacing:.03em;text-align:right}
+.tcontent{padding:16px 0 16px 22px;border-left:1px solid var(--line2);position:relative}
+.tcontent::before{content:'';position:absolute;left:-5px;top:22px;width:9px;height:9px;border-radius:50%;border:2px solid var(--bg2)}
+.trow.study .tcontent::before{background:var(--blue)}
+.trow.health .tcontent::before{background:var(--teal)}
+.trow.emotion .tcontent::before{background:var(--gold)}
+.trow.recovery .tcontent::before{background:rgba(255,255,255,0.22)}
+.ttags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:5px}
+.ttag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.ttag.study{background:var(--blue-dim);color:var(--blue)}
+.ttag.health{background:var(--teal-dim);color:var(--teal)}
+.ttag.emotion{background:var(--gold-dim);color:var(--gold2)}
+.ttag.recovery{background:rgba(255,255,255,0.05);color:var(--mute2)}
+.ttitle{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
+.tdesc{font-size:11.5px;color:var(--mute);line-height:1.7}
+
+/* ─── HABITS ─── */
+.habit-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:opacity .18s;user-select:none}
+.habit-item:last-child{border-bottom:none}
+.habit-item:hover{opacity:.8}
+.hbox{width:19px;height:19px;border-radius:5px;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.habit-item.done .hbox{background:var(--teal);border-color:var(--teal)}
+.hbox svg{display:none}
+.habit-item.done .hbox svg{display:block}
+.habit-item.done .habit-title{color:var(--mute);text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.18)}
+.habit-title{font-size:12.5px;color:var(--white);flex:1;line-height:1.4}
+.hcat{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px;flex-shrink:0}
+
+.score-row{display:flex;align-items:center;gap:18px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.score-big{font-family:var(--serif);font-size:40px;font-weight:600;color:var(--gold);line-height:1;min-width:54px}
+.score-sub{font-size:11px;color:var(--mute);margin-top:1px}
+.strack{flex:1;height:3px;background:var(--bg5);border-radius:2px;overflow:hidden}
+.sfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .4s cubic-bezier(.4,0,.2,1);width:0%}
+.rbtn{font-family:var(--body);font-size:11px;color:var(--mute);background:none;border:1px solid var(--line2);border-radius:6px;padding:6px 12px;cursor:pointer;transition:all .18s}
+.rbtn:hover{color:var(--white);background:var(--bg3)}
+
+/* ─── WEEK DOTS ─── */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:16px 0 12px}
+.wday{text-align:center}
+.wday-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.wday-dot{width:34px;height:34px;border-radius:50%;margin:0 auto;border:1px solid var(--line2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--mute);transition:all .18s}
+.wday-dot:hover{border-color:var(--gold);color:var(--gold)}
+.wday-dot.today{border-color:var(--gold);color:var(--gold2);font-weight:600}
+.wday-dot.done{background:var(--teal);border-color:var(--teal);color:#0b0b0d;font-weight:700}
+
+/* ─── HEALTH LOG ─── */
+.health-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.hf-group{display:flex;flex-direction:column;gap:6px}
+.hf-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.hf-value{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--white);line-height:1}
+.hf-slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;background:var(--bg5);outline:none;cursor:pointer}
+.hf-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);cursor:pointer;transition:transform .15s}
+.hf-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.hf-full{grid-column:1/-1}
+
+.mood-row{display:flex;gap:8px;margin-top:4px}
+.mood-btn{flex:1;padding:8px 4px;border-radius:var(--r);border:1px solid var(--line2);background:transparent;cursor:pointer;font-size:18px;transition:all .18s;text-align:center;line-height:1}
+.mood-btn:hover{border-color:var(--line3);background:var(--bg3)}
+.mood-btn.selected{border-color:var(--gold);background:var(--gold-dim)}
+
+.log-btn{width:100%;padding:12px;border-radius:var(--r2);background:var(--gold-dim);border:1px solid rgba(201,169,110,0.25);color:var(--gold2);font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.log-btn:hover{background:rgba(201,169,110,0.18);border-color:rgba(201,169,110,0.4)}
+
+.health-history{margin-top:20px}
+.hh-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.hh-entry{display:grid;grid-template-columns:80px 1fr;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.hh-entry:last-child{border-bottom:none}
+.hh-date{font-size:11px;color:var(--mute);font-weight:500}
+.hh-bars{display:flex;flex-direction:column;gap:4px}
+.hh-bar-row{display:flex;align-items:center;gap:8px}
+.hh-bar-label{font-size:9px;color:var(--mute);width:46px;flex-shrink:0}
+.hh-track{flex:1;height:4px;background:var(--bg5);border-radius:2px;overflow:hidden}
+.hh-fill{height:100%;border-radius:2px;transition:width .3s}
+.hh-metrics{display:flex;gap:12px;margin-top:4px}
+.hh-metric{font-size:10px;color:var(--mute2)}
+.hh-metric span{color:var(--white);font-weight:500}
+.empty-state{text-align:center;padding:32px 0;color:var(--mute);font-size:12px;line-height:1.7}
+.empty-state .es-icon{font-size:28px;margin-bottom:8px;opacity:.5}
+
+/* ─── SKILLS ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:20px}
+.skill-pillar{border-radius:var(--r2);border:1px solid var(--line2);background:var(--bg2);padding:22px;transition:transform .2s,border-color .2s;cursor:default}
+.skill-pillar:hover{transform:translateY(-2px);border-color:var(--line3)}
+.skill-pillar-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.skill-icon{width:36px;height:36px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.skill-level-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:1px solid}
+.skill-name{font-family:var(--sans);font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px}
+.skill-tagline{font-size:11px;color:var(--mute);line-height:1.6;margin-bottom:14px}
+.skill-progress-label{display:flex;justify-content:space-between;margin-bottom:6px}
+.skill-progress-label span{font-size:10px;color:var(--mute)}
+.skill-progress-label strong{font-size:10px;font-weight:600;color:var(--mute2)}
+.skill-track{height:5px;background:var(--bg5);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.skill-fill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.skill-checklist{display:flex;flex-direction:column;gap:0}
+.skill-check{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;transition:opacity .15s}
+.skill-check:last-child{border-bottom:none}
+.skill-check:hover{opacity:.8}
+.skill-check.done .skill-check-label{color:var(--mute);text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.2)}
+.sbox{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.skill-check.done .sbox{border-color:transparent}
+.sbox svg{display:none}
+.skill-check.done .sbox svg{display:block}
+.skill-check-label{font-size:11.5px;color:var(--mute2);flex:1;line-height:1.4}
+.skill-weekly-note{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.weekly-note-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+textarea.weekly-note-input{width:100%;background:var(--bg3);border:1px solid var(--line2);border-radius:var(--r);padding:10px 12px;font-family:var(--body);font-size:11.5px;color:var(--mute2);resize:none;outline:none;transition:border-color .18s;line-height:1.6;min-height:60px}
+textarea.weekly-note-input:focus{border-color:var(--line3);color:var(--white)}
+textarea.weekly-note-input::placeholder{color:var(--mute)}
+
+.skill-month-log{margin-top:6px}
+.month-log-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.month-log-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px}
+.ml-day{width:100%;aspect-ratio:1;border-radius:3px;background:var(--bg5);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--mute);font-weight:500}
+.ml-day:hover{background:var(--bg4)}
+.ml-day.level-1{background:rgba(78,205,196,0.2)}
+.ml-day.level-2{background:rgba(78,205,196,0.45)}
+.ml-day.level-3{background:rgba(78,205,196,0.7)}
+.ml-day.level-4{background:var(--teal)}
+
+.legend-bar{display:flex;align-items:center;gap:6px;margin-top:4px}
+.legend-bar span{font-size:9px;color:var(--mute)}
+.legend-bar-item{width:11px;height:11px;border-radius:2px}
+
+/* ─── PHASES ─── */
+.phase-card{border-radius:var(--r2);border-left:3px solid;padding:20px 22px;margin-bottom:11px;background:var(--bg2);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:transform .18s}
+.phase-card:hover{transform:translateX(3px)}
+.phase-title{font-family:var(--sans);font-size:14px;font-weight:700;margin-bottom:5px}
+.phase-desc{font-size:11.5px;color:var(--mute);line-height:1.7;margin-bottom:12px}
+.phase-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ptag{font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid}
+
+/* ─── RULES ─── */
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:11px}
+.rule-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r2);padding:18px 20px;transition:border-color .18s,transform .18s}
+.rule-card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.rule-num{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--gold-glow);line-height:1;margin-bottom:7px}
+.rule-title{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--white);margin-bottom:6px}
+.rule-body{font-size:11px;color:var(--mute);line-height:1.75}
+
+.quote-bar{background:var(--gold-dim);border:1px solid rgba(201,169,110,0.18);border-radius:var(--r);padding:16px 20px;margin-top:5px}
+.quote-bar p{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--gold2);line-height:1.7}
+.quote-bar cite{font-size:9.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-top:7px;display:block;font-style:normal}
+
+/* ─── FREEDOM BANNER ─── */
+.freedom-banner{background:linear-gradient(135deg,rgba(201,169,110,0.08) 0%,rgba(78,205,196,0.06) 100%);border:1px solid rgba(201,169,110,0.15);border-radius:var(--r2);padding:22px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.freedom-banner::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.08) 0%,transparent 70%)}
+.fb-eyebrow{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fb-title{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--white);margin-bottom:5px}
+.fb-desc{font-size:12px;color:var(--mute);line-height:1.7;max-width:480px}
+.fb-pillars{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.fb-pillar{padding:5px 12px;border-radius:20px;border:1px solid;font-size:10px;font-weight:600;letter-spacing:.06em}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--bg3);border:1px solid var(--line2);border-radius:var(--r);padding:11px 20px;font-size:12px;color:var(--mute2);z-index:999;opacity:0;transition:all .22s;pointer-events:none;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* ─── CREATIVE STUDIO ─── */
+--coral:#f4845f;--coral-dim:rgba(244,132,95,0.1);
+--violet:#9b8ef4;--violet-dim:rgba(155,142,244,0.1);
+
+.hobby-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:20px}
+.hobby-card{background:var(--bg2);border:1px solid var(--line2);border-radius:var(--r2);overflow:hidden}
+.hobby-header{padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.hobby-icon-wrap{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.hobby-name{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--white);margin-bottom:3px}
+.hobby-tagline{font-size:11px;color:var(--mute);line-height:1.6}
+.hobby-stats{display:flex;gap:0;border-bottom:1px solid var(--line)}
+.hstat{flex:1;padding:12px 14px;border-right:1px solid var(--line);text-align:center}
+.hstat:last-child{border-right:none}
+.hstat-val{font-family:var(--serif);font-size:20px;font-weight:600;line-height:1;margin-bottom:2px}
+.hstat-label{font-size:9px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.hobby-body{padding:18px 22px}
+
+/* timer */
+.practice-timer{text-align:center;padding:18px 0 14px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.timer-display{font-family:var(--serif);font-size:42px;font-weight:500;letter-spacing:.04em;line-height:1;margin-bottom:12px}
+.timer-btns{display:flex;gap:8px;justify-content:center}
+.tbtn{padding:8px 18px;border-radius:var(--r);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .18s;border:1px solid}
+.tbtn.start{background:transparent;color:var(--teal);border-color:rgba(78,205,196,.3)}
+.tbtn.start:hover{background:var(--teal-dim)}
+.tbtn.start.running{color:var(--rose);border-color:rgba(232,140,140,.3)}
+.tbtn.start.running:hover{background:var(--rose-dim)}
+.tbtn.reset-t{background:transparent;color:var(--mute);border-color:var(--line2)}
+.tbtn.reset-t:hover{color:var(--white);background:var(--bg3)}
+.tbtn.log-session{border-color:rgba(201,169,110,.25);color:var(--gold2);background:var(--gold-dim)}
+.tbtn.log-session:hover{background:rgba(201,169,110,.18)}
+
+/* session checklist */
+.session-checks{margin-bottom:16px}
+.session-check-label-group{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.sc-item{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;transition:opacity .15s}
+.sc-item:last-child{border-bottom:none}
+.sc-item:hover{opacity:.8}
+.sc-item.done .sc-label{color:var(--mute);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.18)}
+.scbox{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.sc-item.done .scbox svg{display:block}
+.scbox svg{display:none}
+.sc-label{font-size:11.5px;color:var(--mute2);flex:1;line-height:1.4}
+
+/* session log */
+.session-log{margin-top:4px}
+.slog-title{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.slog-entry{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.slog-entry:last-child{border-bottom:none}
+.slog-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.slog-date{font-size:10px;color:var(--mute);min-width:50px}
+.slog-duration{font-family:var(--serif);font-size:14px;font-weight:500;min-width:42px}
+.slog-note{font-size:11px;color:var(--mute);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slog-mood{font-size:14px}
+
+/* milestones */
+.milestones{display:flex;flex-direction:column;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.milestone-title{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.milestone{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);cursor:pointer;transition:all .18s;user-select:none}
+.milestone:hover{border-color:var(--line2)}
+.milestone.achieved{border-color:transparent}
+.milestone-icon{font-size:16px;flex-shrink:0}
+.milestone-text{flex:1}
+.milestone-name{font-size:12px;font-weight:500;color:var(--mute2);transition:color .18s}
+.milestone.achieved .milestone-name{color:var(--white)}
+.milestone-sub{font-size:10px;color:var(--mute);margin-top:1px}
+.milestone-check{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.milestone.achieved .milestone-check{border-color:transparent}
+
+/* creative insight box */
+.creative-insight{background:linear-gradient(135deg,rgba(155,142,244,0.06),rgba(244,132,95,0.06));border:1px solid rgba(155,142,244,0.15);border-radius:var(--r2);padding:20px 22px;margin-bottom:16px}
+.ci-eyebrow{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:6px}
+.ci-title{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--white);margin-bottom:5px}
+.ci-body{font-size:12px;color:var(--mute);line-height:1.75}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .sidebar{width:54px}
+  .brand-name,.brand-sub,.nav-group-label,.nav-item span,.nav-badge,.sidebar-footer .stat-mini-label{display:none}
+  .brand{padding:0 10px 18px}.brand-icon{width:28px;height:28px}
+  .nav-item{padding:9px;justify-content:center}
+  .nav-icon{width:16px;height:16px}
+  .main{padding:24px 16px 48px}
+  .page-title{font-size:28px}
+  .health-form,.skills-grid,.rules-grid{grid-template-columns:1fr}
+  .hf-full{grid-column:1}
+  .stat-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ SIDEBAR ════ -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M8 2L10 6H14L11 9L12 13L8 11L4 13L5 9L2 6H6L8 2Z" fill="#c9a96e" opacity=".9"/>
+        </svg>
+      </div>
+      <div class="brand-name">Pro System</div>
+    </div>
+    <div class="brand-sub">Financial Freedom OS</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Daily</div>
+    <div class="nav-item active" onclick="showPanel('daily',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><line x1="4" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="4" y1="7.5" x2="8" y2="7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <span>Daily OS</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('habits',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span>Habit Tracker</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('health',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2.5C7 2.5 4 4 4 7C4 9 5.5 10.5 7 12C8.5 10.5 10 9 10 7C10 4 7 2.5 7 2.5Z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+      <span>Health Log</span>
+      <span class="nav-badge">NEW</span>
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Growth</div>
+    <div class="nav-item" onclick="showPanel('skills',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5H12.5L9.5 7.5L10.5 11.5L7 9L3.5 11.5L4.5 7.5L1.5 5H5.5L7 1Z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+      <span>Skills Tracker</span>
+      <span class="nav-badge">NEW</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('phases',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L5 7L8 9L12 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span>30–60–90 Plan</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('rules',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><line x1="7" y1="4.5" x2="7" y2="7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7" cy="9.5" r=".7" fill="currentColor"/></svg></div>
+      <span>Pro Rules</span>
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Creative</div>
+    <div class="nav-item" onclick="showPanel('hobbies',this)">
+      <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11C3 11 4.5 9 7 9C9.5 9 11 11 11 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M5 5.5C5 6.33 5.67 7 6.5 7H7.5C8.33 7 9 6.33 9 5.5V4C9 3.17 8.33 2.5 7.5 2.5H6.5C5.67 2.5 5 3.17 5 4V5.5Z" stroke="currentColor" stroke-width="1.2"/></svg></div>
+      <span>Creative Studio</span>
+      <span class="nav-badge">NEW</span>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="stat-row">
+      <div class="stat-mini">
+        <div class="stat-mini-val" id="streak-val">1</div>
+        <div class="stat-mini-label">day streak</div>
+      </div>
+      <div class="stat-mini">
+        <div class="stat-mini-val" id="total-logged">0</div>
+        <div class="stat-mini-label">days logged</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ════ MAIN ════ -->
+<main class="main">
+
+  <!-- ── DAILY OS ── -->
+  <div id="panel-daily" class="panel active">
+    <div class="page-header">
+      <h1 class="page-title">Your <em>daily</em> operating system</h1>
+      <p class="page-desc">Every block serves all three masters simultaneously — study output, emotional stability, and physical health. Skip one and the others eventually pay for it.</p>
+    </div>
+    <div class="legend-row">
+      <span class="lpill" style="border-color:rgba(126,184,247,.28);color:var(--blue);background:var(--blue-dim)">Study</span>
+      <span class="lpill" style="border-color:rgba(78,205,196,.28);color:var(--teal);background:var(--teal-dim)">Health</span>
+      <span class="lpill" style="border-color:rgba(201,169,110,.28);color:var(--gold2);background:var(--gold-dim)">Emotion</span>
+      <span class="lpill" style="border-color:var(--line2);color:var(--mute2);background:rgba(255,255,255,.04)">Recovery</span>
+    </div>
+    <div class="schedule-list">
+      <div class="trow emotion"><div class="tstamp">7:15 AM</div><div class="tcontent"><div class="ttags"><span class="ttag health">Health</span><span class="ttag emotion">Emotion</span></div><div class="ttitle">Wake — no phone, drink water</div><div class="tdesc">3 deep breaths. Set one intention. No screen for 20 min — let cortisol naturally peak and fall before any external stimulus reaches you.</div></div></div>
+      <div class="trow health"><div class="tstamp">7:30 AM</div><div class="tcontent"><div class="ttags"><span class="ttag health">Health</span></div><div class="ttitle">15 min movement + sunlight</div><div class="tdesc">Walk outside or yoga. Sunlight in the first hour sets your circadian clock. BDNF from movement sharpens focus for 2–3 hours ahead.</div></div></div>
+      <div class="trow emotion"><div class="tstamp">7:50 AM</div><div class="tcontent"><div class="ttags"><span class="ttag emotion">Emotion</span></div><div class="ttitle">Morning anchor — 10 min ritual</div><div class="tdesc">Write 1 gratitude. Set today's single goal. 4 rounds box breathing. You choose your emotional baseline before the day does.</div></div></div>
+      <div class="trow study"><div class="tstamp">8:00 AM</div><div class="tcontent"><div class="ttags"><span class="ttag study">Study</span></div><div class="ttitle">Deep work block 1 — Physics first</div><div class="tdesc">Hardest subject at peak brain power. 50 min focus → 10 min walk. Phone in another room. Active recall only.</div></div></div>
+      <div class="trow health"><div class="tstamp">10:30 AM</div><div class="tcontent"><div class="ttags"><span class="ttag health">Health</span></div><div class="ttitle">Breakfast — protein + complex carbs</div><div class="tdesc">Eggs, daal, roti, fruit. No sugar spikes. 500ml water. 2% dehydration measurably drops concentration.</div></div></div>
+      <div class="trow study"><div class="tstamp">11:00 AM</div><div class="tcontent"><div class="ttags"><span class="ttag study">Study</span></div><div class="ttitle">Deep work block 2 — Chemistry or Biology</div><div class="tdesc">Alternate subjects each day. Use Feynman method. If you can't explain it simply, you haven't understood it.</div></div></div>
+      <div class="trow emotion"><div class="tstamp">2:00 PM</div><div class="tcontent"><div class="ttags"><span class="ttag emotion">Emotion</span><span class="ttag health">Health</span></div><div class="ttitle">Midday check-in + lunch + 20 min rest</div><div class="tdesc">Name your current emotion in one word. Box breathing reset if negative. 20 min nap max — beyond that you enter deep sleep.</div></div></div>
+      <div class="trow study"><div class="tstamp">4:00 PM</div><div class="tcontent"><div class="ttags"><span class="ttag study">Study</span></div><div class="ttitle">Light revision + spaced repetition</div><div class="tdesc">Biological afternoon dip — flashcards, formulas, diagrams. Don't attempt new complex topics. Consolidation is happening quietly.</div></div></div>
+      <div class="trow health"><div class="tstamp">6:00 PM</div><div class="tcontent"><div class="ttags"><span class="ttag health">Health</span><span class="ttag emotion">Emotion</span></div><div class="ttitle">Physical activity — 30 min</div><div class="tdesc">Dance, yoga, or whatever you love. Burns residual cortisol, releases endorphins. This is your emotional reset between day and night.</div></div></div>
+      <div class="trow study"><div class="tstamp">7:00 PM</div><div class="tcontent"><div class="ttags"><span class="ttag study">Study</span></div><div class="ttitle">Mock test + error analysis</div><div class="tdesc">NEET previous year questions timed. Equal time on error analysis — was it concept, carelessness, or panic? Each tells you something different.</div></div></div>
+      <div class="trow health"><div class="tstamp">9:30 PM</div><div class="tcontent"><div class="ttags"><span class="ttag health">Health</span><span class="ttag emotion">Emotion</span></div><div class="ttitle">Dinner + family time</div><div class="tdesc">Light dinner. Family connection directly lowers cortisol via oxytocin. This is a biochemical recharge, not wasted time.</div></div></div>
+      <div class="trow emotion"><div class="tstamp">11:00 PM</div><div class="tcontent"><div class="ttags"><span class="ttag emotion">Emotion</span><span class="ttag recovery">Recovery</span></div><div class="ttitle">Evening close ritual</div><div class="tdesc">Write 3 wins from today. Set tomorrow's intention. Mentally file today — you are not permitted to carry it into sleep.</div></div></div>
+      <div class="trow recovery"><div class="tstamp">11:30 PM</div><div class="tcontent"><div class="ttags"><span class="ttag recovery">Recovery</span></div><div class="ttitle">Screens off — dim lights</div><div class="tdesc">Melatonin rises when lights dim. No phone. Light stretching. Let the nervous system begin its descent.</div></div></div>
+      <div class="trow recovery"><div class="tstamp">12:00 AM</div><div class="tcontent"><div class="ttags"><span class="ttag recovery">Recovery</span></div><div class="ttitle">Sleep — the most productive act of the day</div><div class="tdesc">7+ hours. Memory consolidates in deep sleep. REM processes emotion. One bad night raises amygdala reactivity by 60%.</div></div></div>
+    </div>
+  </div>
+
+  <!-- ── HABITS ── -->
+  <div id="panel-habits" class="panel">
+    <div class="page-header">
+      <h1 class="page-title">Habit <em>tracker</em></h1>
+      <p class="page-desc">Tap to mark done. Process over result — every tick here is a vote for the person you're becoming.</p>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Today's checklist</div><button class="card-action rbtn" onclick="resetHabits()">Reset day</button></div>
+      <div id="habit-list">
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">No phone for first 20 min of day</span><span class="hcat" style="background:var(--gold-dim);color:var(--gold2)">Emotion</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">15 min morning movement + sunlight</span><span class="hcat" style="background:var(--teal-dim);color:var(--teal)">Health</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">Morning anchor ritual completed</span><span class="hcat" style="background:var(--gold-dim);color:var(--gold2)">Emotion</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">2+ hours deep work — phone in other room</span><span class="hcat" style="background:var(--blue-dim);color:var(--blue)">Study</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">Active recall — closed book testing only</span><span class="hcat" style="background:var(--blue-dim);color:var(--blue)">Study</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">Midday emotion check + reset if needed</span><span class="hcat" style="background:var(--gold-dim);color:var(--gold2)">Emotion</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">3 litres of water across the day</span><span class="hcat" style="background:var(--teal-dim);color:var(--teal)">Health</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">30 min physical activity</span><span class="hcat" style="background:var(--teal-dim);color:var(--teal)">Health</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">Evening close — 3 wins written down</span><span class="hcat" style="background:var(--gold-dim);color:var(--gold2)">Emotion</span></div>
+        <div class="habit-item" onclick="toggleHabit(this)"><div class="hbox"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5L4 7.5L8.5 2" stroke="#0b0b0d" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="habit-title">Phone off by 11:30 PM, sleep by 12 AM</span><span class="hcat" style="background:rgba(255,255,255,.06);color:var(--mute2)">Recovery</span></div>
+      </div>
+      <div class="score-row">
+        <div><div class="score-big" id="score-big">0</div><div class="score-sub">of 10 done today</div></div>
+        <div style="flex:1"><div class="strack"><div class="sfill" id="sfill"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:0">This week</div>
+      <div class="week-grid" id="week-grid"></div>
+      <p style="font-size:11px;color:var(--mute);line-height:1.6">A broken chain is just a reason to rebuild stronger.</p>
+    </div>
+  </div>
+
+  <!-- ── HEALTH LOG ── -->
+  <div id="panel-health" class="panel">
+    <div class="page-header">
+      <h1 class="page-title"><em>Health</em> log</h1>
+      <p class="page-desc">Track daily inputs — sleep, energy, water, exercise, mood. The patterns across 30 days will show you exactly what your body needs more or less of.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Log today</div><span id="log-date" style="font-size:11px;color:var(--mute)"></span></div>
+
+      <div class="health-form">
+        <div class="hf-group">
+          <div class="hf-label">Sleep last night</div>
+          <div class="hf-value"><span id="sleep-val">7</span> hrs</div>
+          <input type="range" class="hf-slider" min="3" max="10" step="0.5" value="7" id="sleep-slider" oninput="document.getElementById('sleep-val').textContent=parseFloat(this.value).toFixed(1)">
+        </div>
+        <div class="hf-group">
+          <div class="hf-label">Water intake</div>
+          <div class="hf-value"><span id="water-val">2.0</span> L</div>
+          <input type="range" class="hf-slider" min="0.5" max="4" step="0.5" value="2" id="water-slider" oninput="document.getElementById('water-val').textContent=parseFloat(this.value).toFixed(1)">
+        </div>
+        <div class="hf-group">
+          <div class="hf-label">Energy level (1–10)</div>
+          <div class="hf-value"><span id="energy-val">6</span> / 10</div>
+          <input type="range" class="hf-slider" min="1" max="10" step="1" value="6" id="energy-slider" oninput="document.getElementById('energy-val').textContent=this.value">
+        </div>
+        <div class="hf-group">
+          <div class="hf-label">Focus quality (1–10)</div>
+          <div class="hf-value"><span id="focus-val">6</span> / 10</div>
+          <input type="range" class="hf-slider" min="1" max="10" step="1" value="6" id="focus-slider" oninput="document.getElementById('focus-val').textContent=this.value">
+        </div>
+        <div class="hf-group hf-full">
+          <div class="hf-label">Exercise done?</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="mood-btn" id="ex-yes" onclick="selectExercise('yes')" style="flex:1;font-size:13px;padding:10px">Yes — done</button>
+            <button class="mood-btn" id="ex-no"  onclick="selectExercise('no')"  style="flex:1;font-size:13px;padding:10px">Not today</button>
+          </div>
+        </div>
+        <div class="hf-group hf-full">
+          <div class="hf-label">Mood</div>
+          <div class="mood-row">
+            <button class="mood-btn" onclick="selectMood(this,1)" title="Bad">😞</button>
+            <button class="mood-btn" onclick="selectMood(this,2)" title="Low">😐</button>
+            <button class="mood-btn" onclick="selectMood(this,3)" title="Okay" style="border-color:rgba(201,169,110,.3);background:var(--gold-dim)">😊</button>
+            <button class="mood-btn" onclick="selectMood(this,4)" title="Good">😄</button>
+            <button class="mood-btn" onclick="selectMood(this,5)" title="Great">🔥</button>
+          </div>
+        </div>
+      </div>
+      <button class="log-btn" onclick="logHealth()">Save today's entry</button>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">History</div><button class="card-action" onclick="clearHealthLog()">Clear all</button></div>
+      <div id="health-history-list"><div class="empty-state"><div class="es-icon">📋</div>No entries yet — log your first day above to see patterns emerge here.</div></div>
+    </div>
+  </div>
+
+  <!-- ── SKILLS TRACKER ── -->
+  <div id="panel-skills" class="panel">
+    <div class="page-header">
+      <h1 class="page-title">Skills for <em>financial freedom</em></h1>
+      <p class="page-desc">Three pillars. Every week of consistent practice compounds. You're not measuring results — you're measuring reps. Results are just what happens after enough reps.</p>
+    </div>
+
+    <div class="freedom-banner">
+      <div class="fb-eyebrow">Your north star</div>
+      <div class="fb-title">Financial freedom through skill compounding</div>
+      <div class="fb-desc">Each skill below is a lever. Pull all three consistently and income becomes inevitable — not tomorrow, but in 12–18 months of honest daily reps.</div>
+      <div class="fb-pillars">
+        <span class="fb-pillar" style="border-color:rgba(126,184,247,.25);color:var(--blue)">Communication</span>
+        <span class="fb-pillar" style="border-color:rgba(201,169,110,.25);color:var(--gold2)">AI Literacy</span>
+        <span class="fb-pillar" style="border-color:rgba(129,199,132,.25);color:var(--green)">Health &amp; Mindset</span>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- COMMUNICATION -->
+      <div class="skill-pillar">
+        <div class="skill-pillar-header">
+          <div>
+            <div class="skill-icon" style="background:var(--blue-dim);margin-bottom:10px">💬</div>
+            <div class="skill-name">Communication</div>
+            <div class="skill-tagline">Every business deal, every client, every relationship runs on this. The best idea with poor communication loses to a mediocre idea communicated brilliantly.</div>
+          </div>
+          <span class="skill-level-badge" id="comm-level-badge" style="border-color:rgba(126,184,247,.25);color:var(--blue);background:var(--blue-dim)">Beginner</span>
+        </div>
+        <div class="skill-progress-label">
+          <span>Weekly progress</span>
+          <strong id="comm-pct">0%</strong>
+        </div>
+        <div class="skill-track"><div class="skill-fill" id="comm-fill" style="background:var(--blue);width:0%"></div></div>
+        <div class="skill-checklist">
+          <div class="skill-check" onclick="toggleSkillCheck(this,'comm')"><div class="sbox" style="--chk:var(--blue)"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Spoke to someone new or practiced English for 15 min</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'comm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Wrote one clear paragraph — email, message, or journal</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'comm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Listened actively — no interrupting, no judging</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'comm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Watched / read something in English (30 min)</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'comm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Expressed an opinion clearly without apologizing for it</span></div>
+        </div>
+        <div class="skill-weekly-note">
+          <div class="weekly-note-label">This week I learned / noticed</div>
+          <textarea class="weekly-note-input" placeholder="Write what you observed about your communication this week…" rows="2"></textarea>
+        </div>
+        <div class="skill-month-log" style="margin-top:14px">
+          <div class="month-log-title">30-day activity</div>
+          <div class="month-log-grid" id="comm-month-grid"></div>
+          <div class="legend-bar"><span>Less</span><div class="legend-bar-item" style="background:var(--bg5)"></div><div class="legend-bar-item" style="background:rgba(126,184,247,.2)"></div><div class="legend-bar-item" style="background:rgba(126,184,247,.5)"></div><div class="legend-bar-item" style="background:var(--blue)"></div><span>More</span></div>
+        </div>
+      </div>
+
+      <!-- AI LITERACY -->
+      <div class="skill-pillar">
+        <div class="skill-pillar-header">
+          <div>
+            <div class="skill-icon" style="background:var(--gold-dim);margin-bottom:10px">⚡</div>
+            <div class="skill-name">AI literacy</div>
+            <div class="skill-tagline">The leverage multiplier of this decade. One person with strong AI skills can produce what a team of 10 produced 3 years ago. This is your unfair advantage.</div>
+          </div>
+          <span class="skill-level-badge" id="ai-level-badge" style="border-color:rgba(201,169,110,.25);color:var(--gold2);background:var(--gold-dim)">Beginner</span>
+        </div>
+        <div class="skill-progress-label">
+          <span>Weekly progress</span>
+          <strong id="ai-pct">0%</strong>
+        </div>
+        <div class="skill-track"><div class="skill-fill" id="ai-fill" style="background:var(--gold);width:0%"></div></div>
+        <div class="skill-checklist">
+          <div class="skill-check" onclick="toggleSkillCheck(this,'ai')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Used an AI tool to solve a real problem or create something</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'ai')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Studied one AI concept, tool, or use-case for 20 min</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'ai')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Identified one business idea or problem AI could solve</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'ai')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Wrote a quality prompt and refined it at least once</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'ai')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Followed one creator / channel about AI business / tools</span></div>
+        </div>
+        <div class="skill-weekly-note">
+          <div class="weekly-note-label">This week I built / discovered</div>
+          <textarea class="weekly-note-input" placeholder="What did you create, learn, or discover about AI this week?" rows="2"></textarea>
+        </div>
+        <div class="skill-month-log" style="margin-top:14px">
+          <div class="month-log-title">30-day activity</div>
+          <div class="month-log-grid" id="ai-month-grid"></div>
+          <div class="legend-bar"><span>Less</span><div class="legend-bar-item" style="background:var(--bg5)"></div><div class="legend-bar-item" style="background:rgba(201,169,110,.15)"></div><div class="legend-bar-item" style="background:rgba(201,169,110,.4)"></div><div class="legend-bar-item" style="background:var(--gold)"></div><span>More</span></div>
+        </div>
+      </div>
+
+      <!-- HEALTH & MINDSET -->
+      <div class="skill-pillar">
+        <div class="skill-pillar-header">
+          <div>
+            <div class="skill-icon" style="background:var(--green-dim);margin-bottom:10px">🌱</div>
+            <div class="skill-name">Health &amp; mindset</div>
+            <div class="skill-tagline">Your most underrated business asset. A regulated, energised mind makes better decisions, takes smarter risks, and creates more valuable work than any tool can substitute.</div>
+          </div>
+          <span class="skill-level-badge" id="hm-level-badge" style="border-color:rgba(129,199,132,.25);color:var(--green);background:var(--green-dim)">Beginner</span>
+        </div>
+        <div class="skill-progress-label">
+          <span>Weekly progress</span>
+          <strong id="hm-pct">0%</strong>
+        </div>
+        <div class="skill-track"><div class="skill-fill" id="hm-fill" style="background:var(--green);width:0%"></div></div>
+        <div class="skill-checklist">
+          <div class="skill-check" onclick="toggleSkillCheck(this,'hm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">10 min meditation or intentional stillness</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'hm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Read 10 pages of a book on mindset, business, or health</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'hm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Caught and reframed one negative thought pattern</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'hm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Ate clean — no junk food, no sugar binge</span></div>
+          <div class="skill-check" onclick="toggleSkillCheck(this,'hm')"><div class="sbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#0b0b0d" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="skill-check-label">Wrote what I'm grateful for and what I want to become</span></div>
+        </div>
+        <div class="skill-weekly-note">
+          <div class="weekly-note-label">This week my mindset shift was</div>
+          <textarea class="weekly-note-input" placeholder="What belief changed or strengthened this week?" rows="2"></textarea>
+        </div>
+        <div class="skill-month-log" style="margin-top:14px">
+          <div class="month-log-title">30-day activity</div>
+          <div class="month-log-grid" id="hm-month-grid"></div>
+          <div class="legend-bar"><span>Less</span><div class="legend-bar-item" style="background:var(--bg5)"></div><div class="legend-bar-item" style="background:rgba(129,199,132,.2)"></div><div class="legend-bar-item" style="background:rgba(129,199,132,.5)"></div><div class="legend-bar-item" style="background:var(--green)"></div><span>More</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,var(--bg2),var(--bg3))">
+      <div class="card-title">The compounding principle</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:4px">
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:22px;color:var(--gold);margin-bottom:4px">30 days</div><div style="font-size:11px;color:var(--mute);line-height:1.6">Habits feel lighter. You notice your communication improving. AI tools feel familiar.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:4px">90 days</div><div style="font-size:11px;color:var(--mute);line-height:1.6">You can clearly articulate value. You've built something with AI. Your mindset is visibly different.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:22px;color:var(--blue);margin-bottom:4px">180 days</div><div style="font-size:11px;color:var(--mute);line-height:1.6">First income from a skill becomes possible. You are not the same person who started this journey.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:22px;color:var(--purple);margin-bottom:4px">1 year</div><div style="font-size:11px;color:var(--mute);line-height:1.6">Financial freedom is no longer abstract. It is a specific plan with specific skills attached to specific income streams.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CREATIVE STUDIO ── -->
+  <div id="panel-hobbies" class="panel">
+    <div class="page-header">
+      <h1 class="page-title">Creative <em>studio</em></h1>
+      <p class="page-desc">Guitar and dance — two things you taught yourself by watching and feeling. That instinct is the rarest kind of talent. This tracker honours the process, not the performance.</p>
+    </div>
+
+    <div class="creative-insight">
+      <div class="ci-eyebrow">Why this matters beyond fun</div>
+      <div class="ci-title">Creativity is emotional regulation in disguise</div>
+      <div class="ci-body">Playing guitar for 20 minutes after a hard study session does more for cognitive recovery than scrolling ever will. Dance burns cortisol while building body awareness and rhythm — the same rhythm that improves timing in everything else you do. These aren't hobbies. They're tools that make the rest of your system run better.</div>
+    </div>
+
+    <div class="hobby-grid">
+
+      <!-- ── GUITAR ── -->
+      <div class="hobby-card">
+        <div class="hobby-header">
+          <div class="hobby-icon-wrap" style="background:rgba(244,132,95,0.1)">🎸</div>
+          <div class="hobby-name">Guitar</div>
+          <div class="hobby-tagline">Self-taught by ear and eye. The most honest way to learn music — you went straight to feel before theory. Keep that.</div>
+        </div>
+        <div class="hobby-stats">
+          <div class="hstat"><div class="hstat-val" id="guitar-sessions" style="color:#f4845f">0</div><div class="hstat-label">Sessions</div></div>
+          <div class="hstat"><div class="hstat-val" id="guitar-mins" style="color:#f4845f">0</div><div class="hstat-label">Minutes</div></div>
+          <div class="hstat"><div class="hstat-val" id="guitar-streak" style="color:#f4845f">0</div><div class="hstat-label">Day streak</div></div>
+        </div>
+        <div class="hobby-body">
+          <div class="practice-timer">
+            <div class="timer-display" id="guitar-timer">00:00</div>
+            <div class="timer-btns">
+              <button class="tbtn start" id="guitar-start-btn" onclick="toggleTimer('guitar')">Start</button>
+              <button class="tbtn reset-t" onclick="resetTimer('guitar')">Reset</button>
+              <button class="tbtn log-session" onclick="logSession('guitar')">Log session</button>
+            </div>
+          </div>
+          <div class="session-checks">
+            <div class="session-check-label-group">What I practised today</div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#f4845f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Chord transitions — smooth and clean</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#f4845f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">A riff or lick by ear from a song I like</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#f4845f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Strumming rhythm — locked with a beat</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#f4845f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Played through a song start to finish</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#f4845f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Improvised or played freely for fun</span></div>
+          </div>
+          <div class="session-log">
+            <div class="slog-title">Recent sessions</div>
+            <div id="guitar-log"><div style="font-size:11px;color:var(--mute);text-align:center;padding:12px 0">No sessions yet — start the timer above.</div></div>
+          </div>
+          <div class="milestones">
+            <div class="milestone-title">Milestones — tap to mark achieved</div>
+            <div class="milestone" onclick="toggleMilestone(this,'guitar-m1')" id="guitar-m1">
+              <div class="milestone-icon">🎵</div>
+              <div class="milestone-text"><div class="milestone-name">Played first full song cleanly</div><div class="milestone-sub">Start to finish, no stops</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'guitar-m2')" id="guitar-m2">
+              <div class="milestone-icon">🎸</div>
+              <div class="milestone-text"><div class="milestone-name">Learned a riff purely by ear</div><div class="milestone-sub">No tabs, just listening</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'guitar-m3')" id="guitar-m3">
+              <div class="milestone-icon">🔥</div>
+              <div class="milestone-text"><div class="milestone-name">Played for someone else</div><div class="milestone-sub">The most vulnerable and brave rep</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'guitar-m4')" id="guitar-m4">
+              <div class="milestone-icon">🌟</div>
+              <div class="milestone-text"><div class="milestone-name">Created an original riff</div><div class="milestone-sub">Something that came from inside you</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DANCE ── -->
+      <div class="hobby-card">
+        <div class="hobby-header">
+          <div class="hobby-icon-wrap" style="background:rgba(155,142,244,0.1)">💃</div>
+          <div class="hobby-name">Dance</div>
+          <div class="hobby-tagline">Movement as expression. You integrated it with your workout — which means it never feels like work. That's the ideal relationship with any practice.</div>
+        </div>
+        <div class="hobby-stats">
+          <div class="hstat"><div class="hstat-val" id="dance-sessions" style="color:#9b8ef4">0</div><div class="hstat-label">Sessions</div></div>
+          <div class="hstat"><div class="hstat-val" id="dance-mins" style="color:#9b8ef4">0</div><div class="hstat-label">Minutes</div></div>
+          <div class="hstat"><div class="hstat-val" id="dance-streak" style="color:#9b8ef4">0</div><div class="hstat-label">Day streak</div></div>
+        </div>
+        <div class="hobby-body">
+          <div class="practice-timer">
+            <div class="timer-display" id="dance-timer">00:00</div>
+            <div class="timer-btns">
+              <button class="tbtn start" id="dance-start-btn" onclick="toggleTimer('dance')">Start</button>
+              <button class="tbtn reset-t" onclick="resetTimer('dance')">Reset</button>
+              <button class="tbtn log-session" onclick="logSession('dance')">Log session</button>
+            </div>
+          </div>
+          <div class="session-checks">
+            <div class="session-check-label-group">What I worked on today</div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#9b8ef4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Footwork — clean and intentional steps</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#9b8ef4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Replicated a move from a video by feel</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#9b8ef4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Flowed freely to music — no plan, pure feeling</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#9b8ef4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Upper body — arms, isolations, expression</span></div>
+            <div class="sc-item" onclick="toggleSC(this)"><div class="scbox"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="#9b8ef4" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sc-label">Full routine — start to finish with music</span></div>
+          </div>
+          <div class="session-log">
+            <div class="slog-title">Recent sessions</div>
+            <div id="dance-log"><div style="font-size:11px;color:var(--mute);text-align:center;padding:12px 0">No sessions yet — start the timer above.</div></div>
+          </div>
+          <div class="milestones">
+            <div class="milestone-title">Milestones — tap to mark achieved</div>
+            <div class="milestone" onclick="toggleMilestone(this,'dance-m1')" id="dance-m1">
+              <div class="milestone-icon">🎯</div>
+              <div class="milestone-text"><div class="milestone-name">Nailed a move that used to break down</div><div class="milestone-sub">The click moment — body understood</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'dance-m2')" id="dance-m2">
+              <div class="milestone-icon">🎵</div>
+              <div class="milestone-text"><div class="milestone-name">Felt truly in sync with the music</div><div class="milestone-sub">Not counting beats — just flowing</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'dance-m3')" id="dance-m3">
+              <div class="milestone-icon">📹</div>
+              <div class="milestone-text"><div class="milestone-name">Recorded yourself dancing</div><div class="milestone-sub">Watched it — adjusted — improved</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="milestone" onclick="toggleMilestone(this,'dance-m4')" id="dance-m4">
+              <div class="milestone-icon">🔥</div>
+              <div class="milestone-text"><div class="milestone-name">Danced to cheer yourself up deliberately</div><div class="milestone-sub">Used it as an emotional tool, not just exercise</div></div>
+              <div class="milestone-check"><svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5L3.5 6.5L7.5 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,var(--bg2),var(--bg3))">
+      <div class="card-title">How creativity connects to financial freedom</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:11px;margin-top:4px">
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:16px;color:#f4845f;margin-bottom:5px">Guitar → Content</div><div style="font-size:11px;color:var(--mute);line-height:1.65">Your music journey + AI tools = YouTube content, reels, short-form that builds an audience. The personal story is the product.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:16px;color:#9b8ef4;margin-bottom:5px">Dance → Brand</div><div style="font-size:11px;color:var(--mute);line-height:1.65">A person who studies, builds AI businesses, plays guitar, and dances is memorable. That identity is your personal brand — rare and real.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:16px;color:var(--teal);margin-bottom:5px">Both → Balance</div><div style="font-size:11px;color:var(--mute);line-height:1.65">Creativity protects you from burnout. People who only grind eventually crack. You grind and play — that's a sustainable, lifelong system.</div></div>
+        <div style="padding:14px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r)"><div style="font-family:var(--serif);font-size:16px;color:var(--gold);margin-bottom:5px">Both → Joy</div><div style="font-size:11px;color:var(--mute);line-height:1.65">Financial freedom without joy is just a different kind of prison. These two hobbies ensure that even the hard days have something beautiful in them.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PHASES ── -->
+  <div id="panel-phases" class="panel">
+    <div class="page-header">
+      <h1 class="page-title">The <em>30–60–90</em> day arc</h1>
+      <p class="page-desc">Progress has phases — each demands something different from you. Know which phase you're in and what it requires right now.</p>
+    </div>
+    <div class="phase-card" style="border-left-color:var(--blue)"><div class="phase-title" style="color:var(--blue)">Days 1–7 — Foundation</div><div class="phase-desc">Install the system. Don't aim for perfect — just begin. The only goal is showing up every day. Consistency over intensity, always.</div><div class="phase-tags"><span class="ptag" style="border-color:rgba(126,184,247,.22);color:var(--blue)">Wake at 7:15 AM daily</span><span class="ptag" style="border-color:rgba(126,184,247,.22);color:var(--blue)">25-min focus blocks</span><span class="ptag" style="border-color:rgba(126,184,247,.22);color:var(--blue)">Morning anchor ritual</span><span class="ptag" style="border-color:rgba(126,184,247,.22);color:var(--blue)">Phone out of study room</span><span class="ptag" style="border-color:rgba(126,184,247,.22);color:var(--blue)">3 wins every evening</span></div></div>
+    <div class="phase-card" style="border-left-color:var(--teal)"><div class="phase-title" style="color:var(--teal)">Days 8–21 — Deepening</div><div class="phase-desc">Habits feel lighter. The brain is adapting. Increase depth, add structured review, begin skill practice daily. Notice what triggers your bad days.</div><div class="phase-tags"><span class="ptag" style="border-color:rgba(78,205,196,.22);color:var(--teal)">Extend to 45-min blocks</span><span class="ptag" style="border-color:rgba(78,205,196,.22);color:var(--teal)">Spaced repetition schedule</span><span class="ptag" style="border-color:rgba(78,205,196,.22);color:var(--teal)">Weekly mock test</span><span class="ptag" style="border-color:rgba(78,205,196,.22);color:var(--teal)">Skill reps daily</span></div></div>
+    <div class="phase-card" style="border-left-color:var(--gold)"><div class="phase-title" style="color:var(--gold2)">Days 22–30 — Integration</div><div class="phase-desc">The system runs itself. Refine — double down on what produces the most output. Remove what doesn't serve. Begin building something small with AI.</div><div class="phase-tags"><span class="ptag" style="border-color:rgba(201,169,110,.22);color:var(--gold2)">90-min deep work blocks</span><span class="ptag" style="border-color:rgba(201,169,110,.22);color:var(--gold2)">Full mock exams weekends</span><span class="ptag" style="border-color:rgba(201,169,110,.22);color:var(--gold2)">First AI mini-project</span></div></div>
+    <div class="phase-card" style="border-left-color:#b39ddb"><div class="phase-title" style="color:#d1c4e9">Days 31–60 — Mastery</div><div class="phase-desc">You are the habits now. Focus on peak exam performance. Build something real with AI. Start sharing ideas publicly — the first step toward income.</div><div class="phase-tags"><span class="ptag" style="border-color:rgba(179,157,219,.22);color:#d1c4e9">Full-day exam simulation</span><span class="ptag" style="border-color:rgba(179,157,219,.22);color:#d1c4e9">AI product or content piece</span><span class="ptag" style="border-color:rgba(179,157,219,.22);color:#d1c4e9">Skill all 3 pillars weekly</span></div></div>
+    <div class="phase-card" style="border-left-color:var(--rose)"><div class="phase-title" style="color:var(--rose)">Final 2 weeks (NEET) — Peak and taper</div><div class="phase-desc">No new topics. Consolidate. Protect sleep fiercely. Trust the work already done. After NEET, full energy shifts to AI business building.</div><div class="phase-tags"><span class="ptag" style="border-color:rgba(232,140,140,.22);color:var(--rose)">Revision only</span><span class="ptag" style="border-color:rgba(232,140,140,.22);color:var(--rose)">7+ hrs sleep absolute</span><span class="ptag" style="border-color:rgba(232,140,140,.22);color:var(--rose)">Daily box breathing</span><span class="ptag" style="border-color:rgba(232,140,140,.22);color:var(--rose)">Read your wins log</span></div></div>
+  </div>
+
+  <!-- ── RULES ── -->
+  <div id="panel-rules" class="panel">
+    <div class="page-header">
+      <h1 class="page-title">The <em>ten</em> unbreakable rules</h1>
+      <p class="page-desc">Not guidelines. The axioms the entire system runs on. Break one and you feel it within 48 hours.</p>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card"><div class="rule-num">01</div><div class="rule-title">Sleep is sacred</div><div class="rule-body">Never cut sleep to study or work. A tired brain is filling a bucket with a hole — nothing sticks. Protect 7+ hours always.</div></div>
+      <div class="rule-card"><div class="rule-num">02</div><div class="rule-title">Phone = kryptonite</div><div class="rule-body">Not just silent — in another room. Even face-down on the desk costs 20% cognitive performance. Physical distance is the only real solution.</div></div>
+      <div class="rule-card"><div class="rule-num">03</div><div class="rule-title">Name before you act</div><div class="rule-body">When emotions rise, stop and name the exact feeling. Naming it alone reduces amygdala intensity immediately — proven by neuroscience.</div></div>
+      <div class="rule-card"><div class="rule-num">04</div><div class="rule-title">Never compare your day 1 to someone's day 1000</div><div class="rule-body">Social comparison is the silent killer of momentum. Your only benchmark is yesterday's version of you.</div></div>
+      <div class="rule-card"><div class="rule-num">05</div><div class="rule-title">Test, don't re-read</div><div class="rule-body">Re-reading creates familiarity, not memory. Testing yourself is the only method that builds real, lasting retention.</div></div>
+      <div class="rule-card"><div class="rule-num">06</div><div class="rule-title">Movement is medicine</div><div class="rule-body">When emotionally low or mentally stuck — move first. A 10-min walk changes brain chemistry faster than any motivational video ever will.</div></div>
+      <div class="rule-card"><div class="rule-num">07</div><div class="rule-title">Wins before sleep</div><div class="rule-body">Write 3 things you did well today. The brain updates its self-image on evidence. Build the evidence bank every single night.</div></div>
+      <div class="rule-card"><div class="rule-num">08</div><div class="rule-title">One bad day ≠ one bad life</div><div class="rule-body">When a day collapses, don't analyse it that night. Sleep. Restart. This system was designed to survive disruption.</div></div>
+      <div class="rule-card"><div class="rule-num">09</div><div class="rule-title">Eat to think, not to feel</div><div class="rule-body">Food is brain fuel. Before any work: water, protein, complex carbs. Using food as emotional comfort disrupts both gut health and cognition.</div></div>
+      <div class="rule-card"><div class="rule-num">10</div><div class="rule-title">The process is the result</div><div class="rule-body">Measure days by whether you followed the system. Understanding and income are lagging indicators — they arrive weeks after the work is done.</div></div>
+    </div>
+    <div class="quote-bar" style="margin-top:14px">
+      <p>"You do not rise to the level of your goals. You fall to the level of your systems."</p>
+      <cite>— James Clear, Atomic Habits</cite>
+    </div>
+  </div>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- WIN MODAL -->
+<div id="win-overlay" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px">
+  <div id="win-modal" style="background:#111114;border:1px solid rgba(201,169,110,0.25);border-radius:20px;max-width:420px;width:100%;padding:36px 32px;position:relative;transform:scale(0.9);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1)">
+    <div id="win-sparks" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:20px"></div>
+    <div style="text-align:center">
+      <div id="win-emoji" style="font-size:44px;line-height:1;margin-bottom:16px"></div>
+      <div id="win-title" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.2"></div>
+      <div id="win-msg" style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:24px;font-family:'DM Sans',sans-serif"></div>
+      <div id="win-sub" style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px;font-family:'Syne',sans-serif"></div>
+      <button onclick="closeWin()" style="background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.25);border-radius:10px;padding:11px 32px;font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#e8cc96;cursor:pointer;transition:all .2s;width:100%">Keep going →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── NAV ─── */
+function showPanel(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ─── TOAST ─── */
+function showToast(msg,color){
+  const t=document.getElementById('toast');
+  const dot=t.querySelector('.toast-dot')||document.createElement('div');
+  dot.className='toast-dot';dot.style.background=color||'var(--teal)';
+  if(!t.querySelector('.toast-dot'))t.prepend(dot);
+  else dot.style.background=color||'var(--teal)';
+  t.childNodes[t.childNodes.length-1].textContent&&(t.lastChild.textContent=msg)||(t.appendChild(document.createTextNode(msg)));
+  t.innerHTML='';
+  t.insertAdjacentHTML('afterbegin',`<div class="toast-dot" style="background:${color||'var(--teal)'}"></div>`);
+  t.append(msg);
+  t.classList.add('show');
+  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+/* ─── WIN MODAL ─── */
+const WIN_MESSAGES={
+  habit1:  {e:'✨',title:'First one done.',     msg:'The first tick of the day is the hardest one. You did it. Everything that follows is easier.',          sub:'Small win',      color:'var(--teal)'},
+  habit3:  {e:'💪',title:'You\'re moving.',      msg:'3 habits in. Your brain is running on something real today — not hope, not mood. Actual action.',       sub:'Building momentum', color:'var(--blue)'},
+  habit5:  {e:'🔥',title:'Halfway there.',       msg:'5 out of 10. Most people gave up before this. You didn\'t. That gap — between them and you — is widening daily.', sub:'Past the halfway mark', color:'var(--gold)'},
+  habit7:  {e:'⚡',title:'Almost.',              msg:'7 habits done. You are living proof that discipline is a decision, not a personality trait. Keep this feeling.',    sub:'7 / 10 complete', color:'var(--gold)'},
+  habit10: {e:'🌟',title:'Full day. Complete.',  msg:'Every single habit. That\'s not luck — that is character. Sleep knowing you gave this day everything it deserved.', sub:'Perfect day ✓',   color:'var(--gold2)'},
+  health:  {e:'🌱',title:'Body logged.',         msg:'You noticed your own body today. That awareness — sleep, water, energy — is how people who live long and well actually do it.', sub:'Health entry saved', color:'var(--teal)'},
+  guitar:  {e:'🎸',title:'You played.',          msg:'Self-taught, no theory, just feel. Every session makes the next one deeper. The guitar remembers every time you pick it up.', sub:'Guitar session logged', color:'#f4845f'},
+  dance:   {e:'💃',title:'You moved.',           msg:'Dance and study in the same day. Your body processed what your brain studied. That\'s not a small thing — that\'s genius design.', sub:'Dance session logged', color:'#9b8ef4'},
+  milestone:{e:'🏆',title:'Milestone reached.',  msg:'You set a marker for yourself and walked all the way to it. That\'s not a coincidence. That\'s who you\'re becoming.',           sub:'Achievement unlocked', color:'var(--gold)'},
+  skill:   {e:'📈',title:'Skill rep done.',      msg:'One more repetition of who you want to become. Compounding works exactly like this — quietly, daily, unstoppably.',              sub:'Progress recorded', color:'var(--purple)'},
+  morning: {e:'☀️',title:'Morning done right.',  msg:'No phone, movement, breathing, intention. You gave your brain the start it deserved. The rest of the day is already shaped.', sub:'Morning anchor complete', color:'var(--gold)'},
+  sleep:   {e:'🌙',title:'Ready for sleep.',     msg:'Close your eyes knowing you built something today. Even one rep in the right direction is a rep. Your future self is watching — and proud.', sub:'End of day', color:'var(--purple)'},
+  water:   {e:'💧',title:'Hydration habit.',     msg:'Simple. Powerful. Most people forget this. You remembered. Your brain thanks you — literally.',                                    sub:'3L water done', color:'var(--blue)'},
+  exercise:{e:'🏃',title:'Body moved.',          msg:'30 minutes of activity. Cortisol burned, endorphins released, momentum built. This was the reset your nervous system needed.', sub:'Physical activity done', color:'var(--teal)'},
+};
+
+let winShownFor=new Set();
+
+function showWin(key,force){
+  if(!force&&winShownFor.has(key))return;
+  winShownFor.add(key);
+  const w=WIN_MESSAGES[key]||WIN_MESSAGES.skill;
+  document.getElementById('win-emoji').textContent=w.e;
+  document.getElementById('win-title').textContent=w.title;
+  document.getElementById('win-msg').textContent=w.msg;
+  document.getElementById('win-sub').style.color=w.color;
+  document.getElementById('win-sub').textContent=w.sub;
+  document.getElementById('win-modal').style.borderColor=w.color.replace('var(--','').replace(')','').includes('#')?w.color+'44':w.color.replace(')',',0.3)').replace('var(','' ).replace('--','').replace('teal','rgba(78,205,196').replace('gold2','rgba(232,204,150').replace('gold','rgba(201,169,110').replace('blue','rgba(126,184,247').replace('teal','rgba(78,205,196').replace('purple','rgba(179,157,219').replace('green','rgba(129,199,132');
+  spawnSparks(w.color);
+  const ov=document.getElementById('win-overlay');
+  const mo=document.getElementById('win-modal');
+  ov.style.display='flex';
+  requestAnimationFrame(()=>{mo.style.transform='scale(1)';mo.style.opacity='1';});
+}
+
+function closeWin(){
+  const ov=document.getElementById('win-overlay');
+  const mo=document.getElementById('win-modal');
+  mo.style.transform='scale(0.95)';mo.style.opacity='0';
+  setTimeout(()=>{ov.style.display='none';mo.style.transform='scale(0.9)';},280);
+}
+
+function spawnSparks(color){
+  const c=document.getElementById('win-sparks');c.innerHTML='';
+  const cols=['#c9a96e','#4ecdc4','#7eb8f7','#e8cc96','#f4845f','#9b8ef4'];
+  for(let i=0;i<18;i++){
+    const s=document.createElement('div');
+    const x=Math.random()*100,y=Math.random()*60+70;
+    const sz=Math.random()*5+3;
+    const col=cols[Math.floor(Math.random()*cols.length)];
+    s.style.cssText=`position:absolute;left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;border-radius:50%;background:${col};opacity:0;animation:spark ${0.6+Math.random()*0.8}s ease-out ${Math.random()*0.4}s both`;
+    c.appendChild(s);
+  }
+  if(!document.getElementById('spark-style')){
+    const st=document.createElement('style');st.id='spark-style';
+    st.textContent='@keyframes spark{0%{opacity:0;transform:translateY(0) scale(0)}40%{opacity:1}100%{opacity:0;transform:translateY(-80px) scale(0.3)}}';
+    document.head.appendChild(st);
+  }
+}
+
+/* ─── HABITS ─── */
+const HABIT_LABELS=['No phone for first 20 min','Morning movement','Morning anchor ritual','Deep work block','Active recall','Midday emotion check','3L water','Physical activity','Evening 3 wins','Sleep by 12 AM'];
+const HABIT_WIN_KEYS=[null,'habit1',null,'habit3',null,'habit5',null,'habit7',null,'habit10'];
+
+function toggleHabit(el){
+  el.classList.toggle('done');
+  const done=document.querySelectorAll('.habit-item.done').length;
+  const items=[...document.querySelectorAll('.habit-item')];
+  const idx=items.indexOf(el);
+
+  if(el.classList.contains('done')){
+    // contextual quick toast first
+    const label=el.querySelector('.habit-title').textContent;
+    if(label.includes('water'))    {setTimeout(()=>showWin('water'),400);return;}
+    if(label.includes('activity')) {setTimeout(()=>showWin('exercise'),400);updateHabitScore();return;}
+    if(label.includes('anchor'))   {setTimeout(()=>showWin('morning'),400);updateHabitScore();return;}
+    if(label.includes('sleep'))    {setTimeout(()=>showWin('sleep'),400);updateHabitScore();return;}
+
+    // milestone counts
+    if(done===1)  setTimeout(()=>showWin('habit1'),400);
+    else if(done===3) setTimeout(()=>showWin('habit3'),400);
+    else if(done===5) setTimeout(()=>showWin('habit5'),400);
+    else if(done===7) setTimeout(()=>showWin('habit7'),400);
+    else if(done===10) setTimeout(()=>showWin('habit10',true),400);
+    else showToast('Habit done ✓','var(--teal)');
+  }
+  updateHabitScore();
+}
+
+function updateHabitScore(){
+  const total=document.querySelectorAll('.habit-item').length;
+  const done=document.querySelectorAll('.habit-item.done').length;
+  document.getElementById('score-big').textContent=done;
+  document.getElementById('sfill').style.width=Math.round((done/total)*100)+'%';
+  document.getElementById('streak-val').textContent=done>=8?'🔥':done;
+}
+function resetHabits(){
+  document.querySelectorAll('.habit-item').forEach(i=>i.classList.remove('done'));
+  winShownFor=new Set();
+  updateHabitScore();
+  showToast('Day reset — fresh start','var(--mute)');
+}
+
+/* ─── WEEK GRID ─── */
+function buildWeekGrid(){
+  const g=document.getElementById('week-grid');
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const t=new Date().getDay();
+  const ti=t===0?6:t-1;
+  days.forEach((d,i)=>{
+    const col=document.createElement('div');col.className='wday';
+    const lbl=document.createElement('div');lbl.className='wday-label';lbl.textContent=d;
+    const dot=document.createElement('div');dot.className='wday-dot'+(i===ti?' today':'');
+    dot.textContent=i+1;
+    dot.onclick=()=>{dot.classList.toggle('done');dot.textContent=dot.classList.contains('done')?'✓':(i+1)};
+    col.appendChild(lbl);col.appendChild(dot);g.appendChild(col);
+  });
+}
+buildWeekGrid();
+
+/* ─── HEALTH LOG ─── */
+let selectedMood=3;
+let selectedExercise='yes';
+let healthEntries=JSON.parse(localStorage.getItem('pro_health')||'[]');
+
+document.getElementById('ex-yes').classList.add('selected');
+document.getElementById('log-date').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+
+function selectMood(btn,val){
+  document.querySelectorAll('.mood-btn').forEach(b=>{b.classList.remove('selected')});
+  btn.classList.add('selected');selectedMood=val;
+}
+function selectExercise(val){
+  selectedExercise=val;
+  document.getElementById('ex-yes').classList.toggle('selected',val==='yes');
+  document.getElementById('ex-no').classList.toggle('selected',val==='no');
+}
+
+const moodEmoji=['','😞','😐','😊','😄','🔥'];
+
+function logHealth(){
+  const entry={
+    date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'}),
+    dateKey:new Date().toDateString(),
+    sleep:parseFloat(document.getElementById('sleep-slider').value),
+    water:parseFloat(document.getElementById('water-slider').value),
+    energy:parseInt(document.getElementById('energy-slider').value),
+    focus:parseInt(document.getElementById('focus-slider').value),
+    exercise:selectedExercise,
+    mood:selectedMood
+  };
+  const existing=healthEntries.findIndex(e=>e.dateKey===entry.dateKey);
+  if(existing>=0)healthEntries[existing]=entry;
+  else healthEntries.unshift(entry);
+  if(healthEntries.length>30)healthEntries=healthEntries.slice(0,30);
+  localStorage.setItem('pro_health',JSON.stringify(healthEntries));
+  document.getElementById('total-logged').textContent=healthEntries.length;
+  renderHealthHistory();
+  setTimeout(()=>showWin('health'),300);
+}
+
+function renderHealthHistory(){
+  const el=document.getElementById('health-history-list');
+  if(!healthEntries.length){
+    el.innerHTML='<div class="empty-state"><div class="es-icon">📋</div>No entries yet — log your first day above.</div>';return;
+  }
+  el.innerHTML=healthEntries.slice(0,7).map(e=>`
+    <div class="hh-entry">
+      <div class="hh-date">${e.date}<div style="font-size:10px;margin-top:2px">${moodEmoji[e.mood]||''} ${e.exercise==='yes'?'🏃':''}</div></div>
+      <div>
+        <div class="hh-bars">
+          <div class="hh-bar-row"><span class="hh-bar-label">Sleep</span><div class="hh-track"><div class="hh-fill" style="width:${Math.min(100,(e.sleep/10)*100)}%;background:var(--blue)"></div></div></div>
+          <div class="hh-bar-row"><span class="hh-bar-label">Energy</span><div class="hh-track"><div class="hh-fill" style="width:${e.energy*10}%;background:var(--gold)"></div></div></div>
+          <div class="hh-bar-row"><span class="hh-bar-label">Focus</span><div class="hh-track"><div class="hh-fill" style="width:${e.focus*10}%;background:var(--teal)"></div></div></div>
+        </div>
+        <div class="hh-metrics">
+          <span class="hh-metric">Sleep <span>${e.sleep}h</span></span>
+          <span class="hh-metric">Water <span>${e.water}L</span></span>
+          <span class="hh-metric">Energy <span>${e.energy}/10</span></span>
+          <span class="hh-metric">Focus <span>${e.focus}/10</span></span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function clearHealthLog(){
+  healthEntries=[];localStorage.removeItem('pro_health');
+  document.getElementById('total-logged').textContent='0';
+  renderHealthHistory();showToast('Health log cleared');
+}
+
+renderHealthHistory();
+if(healthEntries.length)document.getElementById('total-logged').textContent=healthEntries.length;
+
+/* ─── SKILLS ─── */
+const skillState={comm:{done:0,total:5},ai:{done:0,total:5},hm:{done:0,total:5}};
+const levelMap=[
+  {min:0,label:'Beginner'},{min:40,label:'Practicing'},{min:70,label:'Building'},{min:90,label:'Pro'}
+];
+
+function toggleSkillCheck(el,skill){
+  el.classList.toggle('done');
+  const box=el.querySelector('.sbox');
+  const col=skill==='comm'?'var(--blue)':skill==='ai'?'var(--gold)':'var(--green)';
+  if(el.classList.contains('done')){box.style.background=col;box.style.borderColor=col;}
+  else{box.style.background='';box.style.borderColor='';}
+  updateSkillProgress(skill);
+}
+
+function updateSkillProgress(skill){
+  const checks=document.querySelectorAll(`[onclick*="toggleSkillCheck"][onclick*="'${skill}'"]`);
+  let done=0;checks.forEach(c=>{if(c.classList.contains('done'))done++;});
+  const pct=Math.round((done/5)*100);
+  document.getElementById(skill+'-fill').style.width=pct+'%';
+  document.getElementById(skill+'-pct').textContent=pct+'%';
+  const level=levelMap.slice().reverse().find(l=>pct>=l.min);
+  document.getElementById(skill+'-level-badge').textContent=level.label;
+  if(done>0&&done%2===0) setTimeout(()=>showWin('skill'),350);
+}
+
+document.getElementById('win-overlay').addEventListener('click',function(e){
+  if(e.target===this)closeWin();
+});
+
+/* ─── CREATIVE TIMERS ─── */
+const timers={
+  guitar:{secs:0,running:false,interval:null,totalMins:0,sessions:0,streak:0,log:[]},
+  dance: {secs:0,running:false,interval:null,totalMins:0,sessions:0,streak:0,log:[]}
+};
+
+function toggleTimer(id){
+  const t=timers[id];const btn=document.getElementById(id+'-start-btn');
+  if(!t.running){
+    t.running=true;btn.textContent='Pause';btn.classList.add('running');
+    t.interval=setInterval(()=>{t.secs++;renderTimer(id);},1000);
+  } else {
+    t.running=false;btn.textContent='Resume';btn.classList.remove('running');
+    clearInterval(t.interval);
+  }
+}
+
+function resetTimer(id){
+  const t=timers[id];
+  clearInterval(t.interval);t.running=false;t.secs=0;
+  document.getElementById(id+'-start-btn').textContent='Start';
+  document.getElementById(id+'-start-btn').classList.remove('running');
+  renderTimer(id);
+}
+
+function renderTimer(id){
+  const t=timers[id];
+  const m=Math.floor(t.secs/60),s=t.secs%60;
+  document.getElementById(id+'-timer').textContent=
+    String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+const moodOpts=['😐','😊','😄','🔥'];
+function logSession(id){
+  const t=timers[id];
+  if(t.secs<30){showToast('Start the timer first — even a short session counts!');return;}
+  const mins=Math.round(t.secs/60);
+  t.totalMins+=mins;t.sessions++;t.streak++;
+  const mood=moodOpts[Math.min(3,Math.floor(mins/10))];
+  t.log.unshift({date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'}),mins,mood});
+  if(t.log.length>5)t.log=t.log.slice(0,5);
+  document.getElementById(id+'-sessions').textContent=t.sessions;
+  document.getElementById(id+'-mins').textContent=t.totalMins;
+  document.getElementById(id+'-streak').textContent=t.streak;
+  renderSessionLog(id);
+  resetTimer(id);
+  setTimeout(()=>showWin(id),350);
+}
+
+function renderSessionLog(id){
+  const t=timers[id];const el=document.getElementById(id+'-log');
+  if(!t.log.length){el.innerHTML='<div style="font-size:11px;color:var(--mute);text-align:center;padding:12px 0">No sessions yet.</div>';return;}
+  const color=id==='guitar'?'#f4845f':'#9b8ef4';
+  el.innerHTML=t.log.map(s=>`
+    <div class="slog-entry">
+      <div class="slog-dot" style="background:${color}"></div>
+      <div class="slog-date">${s.date}</div>
+      <div class="slog-duration" style="color:${color}">${s.mins}m</div>
+      <div class="slog-note">Practice session</div>
+      <div class="slog-mood">${s.mood}</div>
+    </div>`).join('');
+}
+
+/* ─── MILESTONES ─── */
+const milestoneColors={guitar:'#f4845f',dance:'#9b8ef4'};
+function toggleMilestone(el,id){
+  const achieved=el.classList.toggle('achieved');
+  const color=id.startsWith('guitar')?milestoneColors.guitar:milestoneColors.dance;
+  const chk=el.querySelector('.milestone-check');
+  if(achieved){
+    chk.style.background=color;chk.style.borderColor=color;
+    el.style.background=color.replace(')',',0.08)').replace('rgb','rgba').replace('#f4845f','rgba(244,132,95,0.08)').replace('#9b8ef4','rgba(155,142,244,0.08)');
+    el.style.borderColor=color.replace('#f4845f','rgba(244,132,95,0.3)').replace('#9b8ef4','rgba(155,142,244,0.3)');
+    setTimeout(()=>showWin('milestone',true),300);
+  } else {
+    chk.style.background='';chk.style.borderColor='';
+    el.style.background='';el.style.borderColor='';
+  }
+}
+
+/* ─── SESSION CHECKLIST ─── */
+function toggleSC(el){
+  el.classList.toggle('done');
+  const box=el.querySelector('.scbox');
+  if(el.classList.contains('done')){box.style.background=box.querySelector('svg').getAttribute('stroke');box.style.borderColor='transparent';}
+  else{box.style.background='';box.style.borderColor='';}
+}
+
+/* ─── ACTIVITY GRIDS ─── */
+function buildMonthGrid(containerId){
+  const g=document.getElementById(containerId);
+  if(!g)return;
+  for(let i=0;i<30;i++){
+    const d=document.createElement('div');d.className='ml-day';
+    d.textContent=30-i;
+    let clicks=0;
+    d.onclick=()=>{
+      clicks=(clicks+1)%5;
+      d.className='ml-day'+(clicks>0?' level-'+clicks:'');
+    };
+    g.appendChild(d);
+  }
+}
+buildMonthGrid('comm-month-grid');
+buildMonthGrid('ai-month-grid');
+buildMonthGrid('hm-month-grid');
+</script>
+</body>
+</html>
